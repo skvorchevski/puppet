@@ -13,11 +13,9 @@ node slave1.puppet {
 		enable => true,
 	}
 
-	firewalld_port { 'Open port 8080 in the public zone':
-		ensure   => present,
-		zone     => public,
-		port     => 8080,
-		protocol => 'tcp',
+	exec { 'open-port-8080':
+		command => '/usr/bin/firewall-cmd --zone=public --add-port=8080/tcp --permanent',
+		path    => '/usr/bin',
 	}
 }
 
@@ -41,10 +39,8 @@ node slave2.puppet {
 		enable => true,
 	}
 
-	firewalld_port { 'Open port 8080 in the public zone':
-		ensure   => present,
-		zone     => public,
-		port     => 8080,
-		protocol => 'tcp',
+	exec { 'open-port-8080':
+		command => '/usr/bin/firewall-cmd --zone=public --add-port=8080/tcp --permanent',
+		path    => '/usr/bin',
 	}
 }
