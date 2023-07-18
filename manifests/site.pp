@@ -14,7 +14,7 @@ node slave1.puppet {
 	}
 
 	exec { 'open-port-8080':
-		command => '/usr/bin/firewall-cmd --zone=public --add-port=8080/tcp --permanent',
+		command => '/usr/bin/firewall-cmd --add-port=8080/tcp --permanent',
 		path    => '/usr/bin',
 	}
 }
@@ -40,7 +40,7 @@ node slave2.puppet {
 	}
 
 	exec { 'open-port-8080':
-		command => '/usr/bin/firewall-cmd --zone=public --add-port=8080/tcp --permanent',
+		command => '/usr/bin/firewall-cmd --add-port=8080/tcp --permanent',
 		path    => '/usr/bin',
 	}
 }
