@@ -5,8 +5,8 @@ node slave1.puppet {
 
 	file { '/tmp/index.html':
 		ensure => present,
-		source => "/var/www/html/",
-    }
+		source => "/var/www/html/index.html",
+  }
 
 	service { 'httpd':
 		ensure => running,
@@ -31,7 +31,7 @@ node slave2.puppet {
 
 	file { '/tmp/index.php':
 		ensure => present,
-		source => "/var/www/html/",
+		source => "/var/www/html/index.php",
 	}
 
 	service { 'httpd':
