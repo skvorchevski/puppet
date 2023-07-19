@@ -13,10 +13,21 @@ node slave1.puppet {
 		path    => '/usr/bin',
 	}
 
-	service { 'httpd':
-		ensure => running,
-		enable => true,
+	exec { 'restart_firewalld':
+		command     => 'systemctl restart firewalld',
+		onlyif      => 'test ! -f /tmp/firewalld_restarted',
+		refreshonly => true,
 	}
+
+	file { '/tmp/firewalld_restarted':
+		ensure => present,
+		notify => Exec['restart_firewalld'],
+	}
+
+	# service { 'httpd':
+	# 	ensure => running,
+	# 	enable => true,
+	# }
 }
 
 node slave2.puppet {
@@ -42,9 +53,25 @@ node slave2.puppet {
 		path    => '/usr/bin',
 	}
 
-	service { 'httpd':
-		ensure => running,
-		enable => true,
-		require => File['/etc/httpd/conf/httpd.conf'],
+	exec { 'open-port-80':
+		command => '/usr/bin/firewall-cmd --add-port=80/tcp --permanent',
+		path    => '/usr/bin',
 	}
+
+	exec { 'restart_firewalld':
+		command     => 'systemctl restart firewalld',
+		onlyif      => 'test ! -f /tmp/firewalld_restarted',
+		refreshonly => true,
+	}
+
+	file { '/tmp/firewalld_restarted':
+		ensure => present,
+		notify => Exec['restart_firewalld'],
+	}
+
+	# service { 'httpd':
+	# 	ensure => running,
+	# 	enable => true,
+	# 	require => File['/etc/httpd/conf/httpd.conf'],
+	# }
 }
