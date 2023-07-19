@@ -17,11 +17,6 @@ node slave1.puppet {
 		command => 'systemctl restart firewalld',
 		path    => '/usr/bin:/bin',
 	}
-
-	# service { 'httpd':
-	# 	ensure => running,
-	# 	enable => true,
-	# }
 }
 
 node slave2.puppet {
@@ -56,10 +51,4 @@ node slave2.puppet {
 		command => 'systemctl restart firewalld',
 		path    => '/usr/bin:/bin',
 	}
-
-	# service { 'httpd':
-	# 	ensure => running,
-	# 	enable => true,
-	# 	require => File['/etc/httpd/conf/httpd.conf'],
-	# }
 }
