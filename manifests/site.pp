@@ -3,10 +3,10 @@ node slave1.puppet {
 		ensure => installed,
 	}
 
-	file { '/tmp/index.html':
+	file { '/var/www/html/index.html':
 		ensure => present,
-		source => "/var/www/html/index.html",
-  }
+		source => "/vagrant/index.html",
+	}
 
 	exec { 'open-port-80':
 		command => '/usr/bin/firewall-cmd --add-port=80/tcp --permanent',
@@ -28,26 +28,18 @@ node slave2.puppet {
 		ensure => installed,
 	}
 
-	file { 'index.html':
-		path => '/var/www/html/index.html',
-		ensure => absent,
+	file { '/var/www/html/index.php':
+		ensure => present,
+		source => '/vagrant/index.php',
 	}
 
-	file { '/tmp/index.php':
-		ensure => present,
-		source => "/var/www/html/index.php",
+	file { '/var/www/html/index.html':
+		ensure => absent,
 	}
 
 	exec { 'open-port-80':
 		command => '/usr/bin/firewall-cmd --add-port=80/tcp --permanent',
 		path    => '/usr/bin',
-	}
-
-	file { '/etc/httpd/conf/httpd.conf':
-		ensure => present,
-		content => "Listen 80\nServerName localhost\nDocumentRoot /var/www/html\nDirectoryIndex index.php\n",
-		require => Package['httpd'],
-		notify => Service['httpd'],
 	}
 
 	service { 'httpd':
