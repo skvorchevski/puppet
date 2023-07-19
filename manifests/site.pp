@@ -15,13 +15,6 @@ node slave1.puppet {
 
 	exec { 'restart_firewalld':
 		command     => 'systemctl restart firewalld',
-		onlyif      => 'test ! -f /tmp/firewalld_restarted',
-		refreshonly => true,
-	}
-
-	file { '/tmp/firewalld_restarted':
-		ensure => present,
-		notify => Exec['restart_firewalld'],
 	}
 
 	# service { 'httpd':
@@ -60,13 +53,6 @@ node slave2.puppet {
 
 	exec { 'restart_firewalld':
 		command     => 'systemctl restart firewalld',
-		onlyif      => 'test ! -f /tmp/firewalld_restarted',
-		refreshonly => true,
-	}
-
-	file { '/tmp/firewalld_restarted':
-		ensure => present,
-		notify => Exec['restart_firewalld'],
 	}
 
 	# service { 'httpd':
