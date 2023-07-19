@@ -14,7 +14,8 @@ node slave1.puppet {
 	}
 
 	exec { 'restart_firewalld':
-		command     => 'systemctl restart firewalld',
+		command => 'systemctl restart firewalld',
+		path    => '/usr/bin:/bin',
 	}
 
 	# service { 'httpd':
@@ -52,7 +53,8 @@ node slave2.puppet {
 	}
 
 	exec { 'restart_firewalld':
-		command     => 'systemctl restart firewalld',
+		command => 'systemctl restart firewalld',
+		path    => '/usr/bin:/bin',
 	}
 
 	# service { 'httpd':
