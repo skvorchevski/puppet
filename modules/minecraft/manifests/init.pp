@@ -1,10 +1,10 @@
 class minecraft {
   file { '/opt/minecraft':
     ensure => directory,
-    before => File['minecraft_server.1.20.1.jar']
+    before => File['minecraft_file']
   }
 
-  file { 'minecraft_server.1.20.1.jar':
+  file { 'minecraft_file':
     path    => "/opt/minecraft",
     source  => "https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar",
     mode    => "755",
