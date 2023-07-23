@@ -1,7 +1,7 @@
 class minecraft {
   file { '/opt/minecraft':
     ensure => directory,
-    before => File['server.jar']
+    before => File['/opt/minecraft/server.jar']
   }
 
   file { '/opt/minecraft/server.jar':
