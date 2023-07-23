@@ -7,7 +7,10 @@ node slave2.puppet {
 }
 
 node mineserver.puppet {
-  include java
+  package { 'java-1.8.0-openjdk':
+  ensure => installed,
+  }
+
   include minecraft
 }
 
