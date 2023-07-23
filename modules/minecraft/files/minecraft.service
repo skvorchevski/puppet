@@ -3,7 +3,7 @@ Description=Minecraft Service
 
 [Service]
 WorkingDirectory=/opt/minecraft
-ExecStart=/usr/bin/java -Xmx1024M -Xms1024M -jar /opt/minecraft/minecraft_server.1.20.1.jar nogui
+ExecStart=/usr/bin/java -Xmx1024M -Xms1024M -jar /opt/minecraft/server.jar nogui
 Restart=on-failure
 
 [Install]

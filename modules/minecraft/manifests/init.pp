@@ -1,14 +1,12 @@
 class minecraft {
   file { '/opt/minecraft':
     ensure => directory,
-    before => File['/opt/minecraft/server.jar']
   }
 
   file { '/opt/minecraft/server.jar':
     ensure => present,
     source  => "https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar",
     mode    => "755",
-    require => File['/opt/minecraft'],
   }
 
   file { 'minecraft_service':
