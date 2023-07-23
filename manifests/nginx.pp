@@ -1,6 +1,4 @@
-class nginx (
-  String $nginx_conf_source,
-) {
+class nginx  {
   package { 'nginx':
     ensure => installed,
   }
@@ -20,9 +18,9 @@ class nginx (
     path    => '/usr/bin:/bin',
   }
 
-  -> file { '/etc/nginx':
-    ensure => directory,
-    source => $nginx_conf_source,
+  -> file { '/etc/nginx/nginx.conf':
+    ensure => present,
+    source => '/vagrant/nginx.conf',
   }
 
   ~> service { 'nginx':
