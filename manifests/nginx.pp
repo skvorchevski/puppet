@@ -18,10 +18,10 @@ class nginx {
     path    => '/usr/bin:/bin',
   }
 
-  -> file { '/etc/nginx/nginx.conf':
-    ensure => present,
-    source => '/vagrant/nginx.conf',
-  }
+  # -> file { '/etc/nginx/nginx.conf':
+  #   ensure => present,
+  #   source => '/vagrant/nginx.conf',
+  # }
 
   ~> service { 'nginx':
     ensure => running,
