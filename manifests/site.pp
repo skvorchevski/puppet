@@ -8,4 +8,5 @@ node slave2.puppet {
 
 node master.puppet {
 	include role::master_machine
+  include minecraft
 }
