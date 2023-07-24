@@ -7,7 +7,7 @@ node slave2.puppet {
 }
 
 node mineserver.puppet {
-  package { 'openjdk-17-jdk':
+  package { 'java-17-openjdk-devel':
   ensure => installed,
   }
 
