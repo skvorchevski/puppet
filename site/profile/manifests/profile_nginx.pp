@@ -25,9 +25,4 @@ class profile::profile_nginx {
     source => '/vagrant/nginx.conf',
     ensure => present,
   }
-
-  ~> service { 'nginx':
-    ensure => running,
-    enable => true,
-  }
 }
