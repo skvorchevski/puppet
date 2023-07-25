@@ -1,5 +1,10 @@
 class profile::profile_nginx {
-  class{'nginx': }
+  class { 'nginx':
+    manage_repo    => true,
+    service_manage => true,
+    service_ensure => 'running',
+    service_enable => true,
+  }
 
   exec { 'open-port-8080':
     command => '/usr/bin/firewall-cmd --add-port=8080/tcp --permanent',
