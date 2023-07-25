@@ -25,4 +25,9 @@ class profile::profile_nginx {
     source => '/vagrant/nginx.conf',
     ensure => present,
   }
+
+  ~> exec { 'nginx-restart':
+    command     => '/usr/sbin/service nginx restart',
+    refreshonly => true,
+  }
 }
