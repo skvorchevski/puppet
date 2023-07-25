@@ -1,4 +1,4 @@
-class nginx {
+class nginx_manual {
   package { 'nginx':
     ensure => installed,
   }
